@@ -9,6 +9,19 @@ This test suite validates both structure AND correctness:
 - Integration tests: Test with realistic data scenarios
 """
 
+import pandas as pd
+from sklearn.model_selection import train_test_split
+
+df = pd.read_csv("heart.csv")   # adjust filename if needed
+
+X = df.drop(columns=["chol"])
+y = df["chol"]
+
+X_train, X_test, y_train, y_test = train_test_split(
+    X, y, test_size=0.2, random_state=42
+)
+
+
 import pytest
 import pandas as pd
 import numpy as np
